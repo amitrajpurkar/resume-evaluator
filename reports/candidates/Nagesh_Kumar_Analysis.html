@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Resume Analysis – Nagesh Kumar</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black:#000; --dark:#1a1a1a; --mid:#444; --soft:#666; --rule:#bbb; --rule-lt:#ddd; --bg:#fff; --radius:8px; }
+    body { font-family:'Inter',sans-serif; font-size:14.5px; line-height:1.7; color:var(--mid); background:#ebebeb; padding:40px 20px 60px; }
+    .page { max-width:860px; margin:0 auto; background:var(--bg); border:1.5px solid var(--rule); border-radius:12px; overflow:hidden; }
+    .header { background:#fff; padding:36px 48px 28px; border-bottom:3px solid var(--black); }
+    .header-label { font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--soft); margin-bottom:6px; }
+    .header h1 { font-family:'Merriweather',serif; font-size:26px; font-weight:700; color:var(--black); margin-bottom:14px; }
+    .header-meta { display:flex; flex-wrap:wrap; gap:18px; font-size:12.5px; color:var(--soft); }
+    .header-meta span { display:flex; align-items:center; gap:5px; }
+    .fit-banner { display:flex; align-items:center; gap:20px; padding:20px 48px; border-bottom:1px solid var(--rule); }
+    .fit-score { flex-shrink:0; width:70px; height:70px; border-radius:50%; border:2.5px solid var(--black); background:#fff; color:var(--black); display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:700; font-size:19px; line-height:1; }
+    .fit-score span { font-size:10px; font-weight:600; color:var(--soft); margin-top:2px; letter-spacing:.05em; text-transform:uppercase; }
+    .fit-text h2 { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:4px; }
+    .fit-text p { font-size:13px; color:var(--soft); }
+    .body { padding:36px 48px 48px; }
+    section { margin-bottom:34px; }
+    .section-title { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--dark); }
+    .cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .card { border-radius:var(--radius); padding:16px 18px; background:#fff; border:1px solid var(--rule); }
+    .card-title { font-weight:700; font-size:13px; color:var(--dark); margin-bottom:7px; }
+    .card ul { padding-left:15px; } .card ul li { font-size:12.5px; color:var(--mid); margin-bottom:4px; } .card p { font-size:12.5px; color:var(--mid); }
+    .strength-block { border:1px solid var(--rule); border-left:4px solid var(--dark); border-radius:var(--radius); padding:18px 22px; margin-bottom:10px; background:#fff; }
+    .strength-block .card-title { color:var(--dark); }
+    .strength-block ul { padding-left:16px; } .strength-block ul li { font-size:13px; color:var(--mid); margin-bottom:5px; }
+    .gap-block { border-radius:var(--radius); padding:16px 20px; margin-bottom:10px; background:#fff; }
+    .gap-block.major { border:1px solid var(--rule); border-left:5px solid var(--dark); }
+    .gap-block.minor { border:1px dashed var(--rule); border-left:3px dashed var(--mid); }
+    .gap-block .card-title { font-size:13px; margin-bottom:6px; color:var(--dark); }
+    .gap-block.major .card-title { font-weight:700; } .gap-block.minor .card-title { font-weight:600; }
+    .gap-block p { font-size:12.5px; color:var(--mid); }
+    .reco-box { border:2px solid var(--dark); border-radius:var(--radius); padding:20px 24px; background:#fff; }
+    .reco-box p { font-size:13.5px; color:var(--mid); margin-bottom:12px; }
+    .reco-box ol { padding-left:18px; } .reco-box ol li { font-size:13px; color:var(--mid); margin-bottom:6px; font-style:italic; }
+    .schedule-box { border:1px solid var(--rule); border-left:4px solid var(--dark); border-radius:var(--radius); padding:14px 20px; background:#fff; font-size:13px; color:var(--mid); }
+    .schedule-box strong { color:var(--dark); }
+    table { width:100%; border-collapse:collapse; font-size:13px; border:1.5px solid var(--dark); }
+    thead tr { background:#fff; border-bottom:2px solid var(--dark); }
+    thead th { padding:10px 14px; text-align:left; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--dark); }
+    tbody tr { border-bottom:1px solid var(--rule-lt); } tbody tr:nth-child(even) { background:#f8f8f8; }
+    tbody td { padding:9px 14px; vertical-align:middle; color:var(--mid); } tbody td:first-child { font-weight:600; color:var(--dark); }
+    .badge { display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:700; background:#fff; color:var(--dark); letter-spacing:.02em; }
+    .badge.excellent { border:2px solid var(--dark); }
+    .badge.strong { border:1.5px solid var(--dark); }
+    .badge.good { border:1.5px solid var(--mid); color:var(--mid); }
+    .badge.moderate { border:1.5px dashed var(--mid); color:var(--mid); }
+    .badge.weak { border:1.5px dashed var(--soft); color:var(--soft); }
+    .badge.gap { border:2px dashed var(--dark); font-style:italic; }
+    .obs-good, .obs-better { border-radius:var(--radius); padding:14px 18px; margin-bottom:10px; background:#fff; }
+    .obs-good { border:1px solid var(--rule); border-left:4px solid var(--dark); }
+    .obs-better { border:1px dashed var(--rule); border-left:3px dashed var(--mid); }
+    .obs-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:7px; color:var(--dark); }
+    .obs-good ul, .obs-better ul { padding-left:15px; } .obs-good ul li, .obs-better ul li { font-size:12.5px; color:var(--mid); margin-bottom:4px; }
+    .footer { text-align:center; font-size:11px; color:var(--soft); padding:16px 48px; border-top:1px solid var(--rule); letter-spacing:.04em; }
+    @media print { body { background:#fff; padding:0; } .page { box-shadow:none; border-radius:0; border:none; } section { page-break-inside:avoid; } }
+  </style>
+
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-label">Resume Analysis Report</div>
+    <h1>Nagesh Kumar</h1>
+    <div class="header-meta">
+      <span>🎯 Engineering Manager / Delivery</span>
+      <span>📅 March 29, 2026</span>
+      <span>💼 20+ Years</span>
+      <span>📍 India (city not specified)</span>
+    </div>
+  </div>
+
+  <div class="fit-banner">
+    <div class="fit-score">50%<span>Fit</span></div>
+    <div class="fit-text">
+      <h2>Weak Match — Leadership Strong, Tech Stack Absent</h2>
+      <p>Seasoned engineering manager with excellent Agile/delivery credentials and Java background, but the modern frontend stack (React, TypeScript, GraphQL, Angular) required by the JD is entirely absent from the resume.</p>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <section>
+      <div class="section-title"><span>📅</span> Interview Schedule</div>
+      <div class="schedule-box">
+        <strong>Slot:</strong> Mar 30, 2026 at 10:00 AM &nbsp;|&nbsp;
+        <strong>Status:</strong> Pending
+        
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>✅</span> Key Strengths</div>
+      <div class="strength-block"><div class="card-title">Engineering Leadership & Delivery</div><ul><li>20+ years with a clear progression from developer → lead → engineering manager.</li><li>Directed complex, multi-million-dollar projects with cross-functional teams.</li><li>Certified Scrum Master (CSM) — proven Agile delivery practice.</li><li>SOW & SLA management, stakeholder management, resource allocation — mature delivery leadership.</li></ul></div>
+<div class="strength-block"><div class="card-title">Java & Backend</div><ul><li>Sun Certified Java Programmer (SCJP) — strong Java foundations.</li><li>Java Development and Design Patterns listed as core competency.</li><li>Microservices Architecture listed as a core competency.</li></ul></div>
+<div class="strength-block"><div class="card-title">Process & Quality</div><ul><li>Established coding standards, design documentation, and quality frameworks.</li><li>CI/CD pipeline implementation, performance tuning listed as competencies.</li><li>AWS Certified Solutions Architect (pursuing) — cloud awareness.</li></ul></div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>⚠️</span> Gaps &amp; Weaknesses</div>
+      <div class="gap-block major"><div class="card-title">React / TypeScript / Node.js — Absent</div><p>None of React, TypeScript, or Node.js appear anywhere in the resume. These are primary JD requirements.</p></div>
+<div class="gap-block major"><div class="card-title">Angular — Absent</div><p>Angular is not mentioned. Given the JD's emphasis on Angular v15+, this is a significant gap.</p></div>
+<div class="gap-block major"><div class="card-title">GraphQL — Absent</div><p>GraphQL does not appear anywhere. This is listed as a key technical skill in the JD.</p></div>
+<div class="gap-block minor"><div class="card-title">Cloud — AWS Only (Pursuing Cert)</div><p>Only AWS is mentioned, and the certification is still being pursued. Azure, which is the JD's primary cloud, is not present.</p></div>
+<div class="gap-block minor"><div class="card-title">Limited Technical Depth in Modern Stack</div><p>The resume presents a management profile without demonstrating hands-on depth in the modern tech stack the role requires. The JD calls for hands-on technical leadership.</p></div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>📋</span> Resume Quality Observations</div>
+      <div class="obs-good"><div class="obs-label">The Good</div><ul><li>Clear career timeline and progression — easy for hiring managers to evaluate trajectory.</li><li>Strong management credentials with certifications (CSM, SCJP) to back them up.</li></ul></div>
+      <div class="obs-better"><div class="obs-label">Could Be Better</div><ul><li>The resume reads as a delivery manager profile, not a hands-on technical architect. The JD requires both.</li><li>Modern frontend stack (React, Angular, TypeScript, GraphQL) is completely absent — likely to fail JD keyword screening.</li><li>Add city/location to the resume header.</li></ul></div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>🏁</span> Recommendation</div>
+      <div class="reco-box">
+        <p>Nagesh brings strong engineering management and Java credentials but lacks the modern frontend and full-stack technical depth the JD requires. Best suited for a pure Engineering Manager / Delivery Lead role rather than this Technical Architect hybrid.</p>
+        <ol><li>Have you had hands-on experience with React, Angular, or TypeScript in any recent project?</li>
+<li>Have you worked with GraphQL or modern API patterns beyond REST?</li>
+<li>What is your city of residence — is Hyderabad (4 days in office) workable?</li></ol>
+        <p style="margin-top:14px;margin-bottom:0;font-style:normal;">Unless the organisation is willing to split the Technical Architect and Engineering Manager functions across two hires, this candidate does not meet the technical depth requirements of the combined role.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>📊</span> Skills Coverage Matrix</div>
+      <table>
+        <thead><tr><th>JD Requirement</th><th>Resume Coverage</th><th>Strength</th></tr></thead>
+        <tbody><tr><td>Java / Spring Boot</td><td>SCJP certified, listed competency</td><td><span class="badge good">Good</span></td></tr>
+<tr><td>React / TypeScript</td><td>Not mentioned</td><td><span class="badge gap">Gap</span></td></tr>
+<tr><td>Angular</td><td>Not mentioned</td><td><span class="badge gap">Gap</span></td></tr>
+<tr><td>GraphQL</td><td>Not mentioned</td><td><span class="badge gap">Gap</span></td></tr>
+<tr><td>Node.js</td><td>Not mentioned</td><td><span class="badge gap">Gap</span></td></tr>
+<tr><td>AWS</td><td>Pursuing certification</td><td><span class="badge weak">Weak</span></td></tr>
+<tr><td>Azure</td><td>Not mentioned</td><td><span class="badge gap">Gap</span></td></tr>
+<tr><td>Microservices / Architecture</td><td>Listed as core competency</td><td><span class="badge moderate">Moderate</span></td></tr>
+<tr><td>Agile / Leadership</td><td>CSM certified, strong delivery history</td><td><span class="badge excellent">Excellent</span></td></tr>
+<tr><td>Team Management 15+ yrs</td><td>20+ yrs — multi-team management</td><td><span class="badge excellent">Excellent</span></td></tr>
+<tr><td>Security / Auth</td><td>Not specifically mentioned</td><td><span class="badge weak">Weak</span></td></tr>
+<tr><td>DevOps / CI-CD</td><td>Listed as competency</td><td><span class="badge moderate">Moderate</span></td></tr></tbody>
+      </table>
+    </section>
+
+  </div>
+  <div class="footer">Confidential &middot; Resume Analysis &middot; Nagesh Kumar &middot; March 29, 2026</div>
+</div>
+</body>
+</html>

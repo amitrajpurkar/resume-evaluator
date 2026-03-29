@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Candidate Shortlist — Senior Engineering Manager / Technical Architect</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black:#000; --dark:#1a1a1a; --mid:#444; --soft:#666; --rule:#bbb; --rule-lt:#ddd; --bg:#fff; --radius:8px; }
+    body { font-family:'Inter',sans-serif; font-size:14px; line-height:1.7; color:var(--mid); background:#ebebeb; padding:40px 20px 60px; }
+    .page { max-width:960px; margin:0 auto; background:var(--bg); border:1.5px solid var(--rule); border-radius:12px; overflow:hidden; }
+
+    /* Header */
+    .header { padding:36px 52px 28px; border-bottom:3px solid var(--black); }
+    .header-label { font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--soft); margin-bottom:6px; }
+    .header h1 { font-family:'Merriweather',serif; font-size:24px; font-weight:700; color:var(--black); margin-bottom:14px; }
+    .header-meta { display:flex; flex-wrap:wrap; gap:20px; font-size:12.5px; color:var(--soft); }
+    .header-meta span { display:flex; align-items:center; gap:5px; }
+
+    .body { padding:36px 52px 52px; }
+    section { margin-bottom:40px; }
+    .section-title { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--dark); }
+
+    /* JD Summary box */
+    .jd-box { border:1px solid var(--rule); border-left:4px solid var(--dark); border-radius:var(--radius); padding:18px 22px; background:#fff; }
+    .jd-box p { font-size:13px; color:var(--mid); margin-bottom:10px; }
+    .jd-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .tag { display:inline-block; padding:3px 10px; border:1px solid var(--rule); border-radius:999px; font-size:11.5px; color:var(--mid); }
+    .tag.req { border-color:var(--dark); color:var(--dark); font-weight:600; }
+
+    /* Ranking table */
+    .rank-table { width:100%; border-collapse:collapse; font-size:13px; border:1.5px solid var(--dark); }
+    .rank-table thead tr { border-bottom:2px solid var(--dark); }
+    .rank-table thead th { padding:10px 14px; text-align:left; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--dark); }
+    .rank-table tbody tr { border-bottom:1px solid var(--rule-lt); }
+    .rank-table tbody tr:nth-child(even) { background:#f8f8f8; }
+    .rank-table tbody td { padding:11px 14px; vertical-align:top; }
+    .rank-num { font-size:18px; font-weight:700; color:var(--dark); text-align:center !important; }
+    .cname { font-weight:700; color:var(--dark); font-size:13.5px; }
+    .ctitle { font-size:11.5px; color:var(--soft); margin-top:2px; }
+    .score-cell { text-align:center !important; }
+    .score-circle { display:inline-flex; flex-direction:column; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; border:2px solid var(--dark); font-weight:700; font-size:15px; color:var(--dark); line-height:1; }
+    .score-circle span { font-size:9px; color:var(--soft); font-weight:500; margin-top:1px; text-transform:uppercase; }
+    .verdict { font-weight:600; font-size:12.5px; color:var(--dark); margin-bottom:4px; }
+    .summary-text { font-size:12px; color:var(--mid); }
+
+    /* Skill dots */
+    .skill-row { display:flex; flex-direction:column; gap:4px; }
+    .skill-item { display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--mid); }
+    .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .dot.yes  { background:var(--dark); }
+    .dot.part { background:none; border:1.5px solid var(--mid); }
+    .dot.no   { background:none; border:1.5px dashed var(--soft); }
+
+    /* Schedule table */
+    .sched-table { width:100%; border-collapse:collapse; font-size:13px; border:1.5px solid var(--dark); }
+    .sched-table thead tr { border-bottom:2px solid var(--dark); }
+    .sched-table thead th { padding:10px 14px; text-align:left; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--dark); }
+    .sched-table tbody tr { border-bottom:1px solid var(--rule-lt); }
+    .sched-table tbody tr:nth-child(even) { background:#f8f8f8; }
+    .sched-table tbody td { padding:10px 14px; font-size:13px; color:var(--mid); }
+    .sched-table tbody td:first-child { font-weight:600; color:var(--dark); }
+    .status-pending { font-style:italic; color:var(--soft); }
+    .status-missed  { font-weight:700; color:var(--dark); }
+
+    /* Tech comparison grid */
+    .tech-grid { width:100%; border-collapse:collapse; font-size:12.5px; border:1.5px solid var(--dark); }
+    .tech-grid thead tr { border-bottom:2px solid var(--dark); }
+    .tech-grid thead th { padding:9px 12px; font-weight:700; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--dark); border-right:1px solid var(--rule-lt); text-align:center; }
+    .tech-grid thead th:first-child { text-align:left; }
+    .tech-grid tbody tr { border-bottom:1px solid var(--rule-lt); }
+    .tech-grid tbody tr:nth-child(even) { background:#f8f8f8; }
+    .tech-grid tbody td { padding:8px 12px; border-right:1px solid var(--rule-lt); text-align:center; font-size:13px; }
+    .tech-grid tbody td:first-child { text-align:left; font-weight:600; color:var(--dark); font-size:12.5px; }
+
+    /* Hiring decision boxes */
+    .decision-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .decision-box { border-radius:var(--radius); padding:18px 20px; background:#fff; }
+    .decision-box.priority { border:2px solid var(--dark); }
+    .decision-box.consider  { border:1px solid var(--rule); border-left:4px solid var(--dark); }
+    .decision-box.hold      { border:1px dashed var(--rule); border-left:3px dashed var(--mid); }
+    .decision-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--soft); margin-bottom:6px; }
+    .decision-name  { font-size:14px; font-weight:700; color:var(--dark); margin-bottom:6px; }
+    .decision-note  { font-size:12.5px; color:var(--mid); }
+
+    .footer { text-align:center; font-size:11px; color:var(--soft); padding:16px 52px; border-top:1px solid var(--rule); letter-spacing:.04em; }
+    @media print { body { background:#fff; padding:0; } .page { box-shadow:none; border-radius:0; border:none; } section { page-break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-label">Candidate Shortlist Report</div>
+    <h1>Senior Engineering Manager / Technical Architect</h1>
+    <div class="header-meta">
+      <span>📍 Hyderabad — Hybrid (4 days in office)</span>
+      <span>💼 Full Time</span>
+      <span>📅 Interview Cohort: Mar 30–31, 2026</span>
+      <span>👥 6 Candidates Evaluated</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- JD Summary -->
+    <section>
+      <div class="section-title">Role Requirements Summary</div>
+      <div class="jd-box">
+        <p>Seeking a Senior Engineering Manager / Technical Architect with 15+ years of experience to lead multiple cross-functional teams, define application architecture and technical roadmap, and provide hands-on technical leadership.</p>
+        <div class="jd-tags">
+          <span class="tag req">React</span>
+          <span class="tag req">Java</span>
+          <span class="tag req">TypeScript</span>
+          <span class="tag req">GraphQL</span>
+          <span class="tag req">Angular v15+</span>
+          <span class="tag req">Azure</span>
+          <span class="tag req">Node.js</span>
+          <span class="tag req">Microservices</span>
+          <span class="tag req">15+ Years</span>
+          <span class="tag req">Multi-team Management</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">AWS/GCP</span>
+          <span class="tag">Vue.js</span>
+          <span class="tag">SaaS/Enterprise</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ranked Table -->
+    <section>
+      <div class="section-title">Ranked Candidate Overview</div>
+      <table class="rank-table">
+        <thead>
+          <tr>
+            <th style="width:40px">#</th>
+            <th>Candidate</th>
+            <th style="width:80px; text-align:center">Fit Score</th>
+            <th>Verdict &amp; Summary</th>
+            <th>Key Strengths</th>
+            <th>Critical Gaps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td>
+              <div class="cname">Venu Gajendrula</div>
+              <div class="ctitle">Director of Engineering / AI Architect · 21+ yrs · Hyderabad</div>
+            </td>
+            <td class="score-cell"><div class="score-circle">80%<span>Fit</span></div></td>
+            <td>
+              <div class="verdict">Strong Match — Best Leadership Profile</div>
+              <div class="summary-text">Largest management scope (250+ FTE, $50M P&L). Java/Spring Boot/Microservices excellent. Missed Mar-27 slot — reschedule as priority.</div>
+            </td>
+            <td><div class="summary-text">Java · Microservices · Cloud (AWS/Azure/GCP) · P&amp;L Leadership · Delivery track record</div></td>
+            <td><div class="summary-text">GraphQL absent · Angular not in projects · Azure skews data/DevOps</div></td>
+          </tr>
+          <tr>
+            <td class="rank-num">2</td>
+            <td>
+              <div class="cname">Subash Babu Sivasubramanian</div>
+              <div class="ctitle">Enterprise Architect · 16+ yrs · City TBC</div>
+            </td>
+            <td class="score-cell"><div class="score-circle">72%<span>Fit</span></div></td>
+            <td>
+              <div class="verdict">Strong Technical Match — Leadership TBC</div>
+              <div class="summary-text">Best tech alignment: React/TS/GraphQL/Angular/multi-cloud all present. Leadership depth and city must be verified at interview.</div>
+            </td>
+            <td><div class="summary-text">React 18 · TypeScript 5 · GraphQL · Angular · Azure/AWS/GCP · Testing</div></td>
+            <td><div class="summary-text">No team sizes stated · Java peripheral · Location unconfirmed</div></td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td>
+              <div class="cname">Prasad Mamidi</div>
+              <div class="ctitle">Solution Architect / Technical Manager · 20+ yrs · Hyderabad</div>
+            </td>
+            <td class="score-cell"><div class="score-circle">68%<span>Fit</span></div></td>
+            <td>
+              <div class="verdict">Good Match — Frontend Leader, GraphQL Gap</div>
+              <div class="summary-text">Strong React/Angular leadership based in Hyderabad. GraphQL and Java absent. High potential if GraphQL exposure can be confirmed.</div>
+            </td>
+            <td><div class="summary-text">React · Angular · Vue.js · Node.js · 20 yrs leadership · Hyderabad</div></td>
+            <td><div class="summary-text">GraphQL absent · Java absent · Azure not prominent</div></td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td>
+              <div class="cname">Anish Kumar Mishra</div>
+              <div class="ctitle">Technical Architect · 16 yrs · Bengaluru ⚠️</div>
+            </td>
+            <td class="score-cell"><div class="score-circle">62%<span>Fit</span></div></td>
+            <td>
+              <div class="verdict">Moderate Match — Tech Strong, Key Gaps</div>
+              <div class="summary-text">Excellent React/GraphQL/TypeScript profile. Angular and Java completely absent. Location (Bengaluru) is a practical concern for 4-day in-office.</div>
+            </td>
+            <td><div class="summary-text">React · TypeScript · GraphQL · Apollo Server · Node.js · AWS</div></td>
+            <td><div class="summary-text">Angular absent · Java absent · Azure absent · Bengaluru location</div></td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td>
+              <div class="cname">Hazarath Dudekula</div>
+              <div class="ctitle">Application Architect · 17+ yrs · India</div>
+            </td>
+            <td class="score-cell"><div class="score-circle">58%<span>Fit</span></div></td>
+            <td>
+              <div class="verdict">Partial Match — Stack Mismatch (.NET)</div>
+              <div class="summary-text">Exceptional Azure/Angular/Architecture credentials — but primary backend is .NET/C#, not Java. React absent. Consider for .NET-stack roles.</div>
+            </td>
+            <td><div class="summary-text">Angular 2–18 · Azure (deep) · Microservices · GraphQL · Security</div></td>
+            <td><div class="summary-text">.NET only — no Java · React absent · Node.js absent</div></td>
+          </tr>
+          <tr>
+            <td class="rank-num">6</td>
+            <td>
+              <div class="cname">Nagesh Kumar</div>
+              <div class="ctitle">Engineering Manager · 20+ yrs · City TBC</div>
+            </td>
+            <td class="score-cell"><div class="score-circle">50%<span>Fit</span></div></td>
+            <td>
+              <div class="verdict">Weak Match — Management Strong, Stack Absent</div>
+              <div class="summary-text">Strong delivery leadership and Java/Agile credentials. Modern frontend stack (React, Angular, TypeScript, GraphQL) entirely absent. Better fit for pure EM roles.</div>
+            </td>
+            <td><div class="summary-text">Java (SCJP) · CSM certified · 20 yrs delivery management · Microservices</div></td>
+            <td><div class="summary-text">React/Angular/TypeScript/GraphQL all absent · Azure absent</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Tech Coverage Comparison -->
+    <section>
+      <div class="section-title">Technology Coverage Comparison</div>
+      <table class="tech-grid">
+        <thead>
+          <tr>
+            <th>Skill (JD Required)</th>
+            <th>Venu G.</th>
+            <th>Subash B.</th>
+            <th>Prasad M.</th>
+            <th>Anish K.</th>
+            <th>Hazarath D.</th>
+            <th>Nagesh K.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>React / TypeScript</td><td>✓</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td>—</td><td>—</td></tr>
+          <tr><td>Angular v15+</td>      <td>~</td><td>✓</td> <td>✓✓</td><td>—</td> <td>✓✓</td><td>—</td></tr>
+          <tr><td>GraphQL</td>           <td>—</td><td>✓✓</td><td>—</td> <td>✓✓</td><td>✓</td> <td>—</td></tr>
+          <tr><td>Java / Spring Boot</td><td>✓✓</td><td>~</td><td>—</td> <td>—</td> <td>—</td> <td>✓</td></tr>
+          <tr><td>Node.js</td>           <td>~</td><td>✓✓</td><td>✓</td> <td>✓✓</td><td>—</td> <td>—</td></tr>
+          <tr><td>Azure</td>             <td>~</td><td>✓</td> <td>~</td> <td>—</td> <td>✓✓</td><td>—</td></tr>
+          <tr><td>Microservices</td>     <td>✓✓</td><td>✓✓</td><td>✓</td><td>~</td><td>✓✓</td><td>✓</td></tr>
+          <tr><td>Team Leadership</td>   <td>✓✓</td><td>~</td><td>✓✓</td><td>~</td><td>✓</td> <td>✓✓</td></tr>
+          <tr><td>Agile / SAFe</td>      <td>✓✓</td><td>✓</td><td>✓✓</td><td>~</td><td>✓</td> <td>✓✓</td></tr>
+          <tr><td>Security / Auth</td>   <td>~</td><td>✓</td> <td>~</td> <td>✓</td> <td>✓✓</td><td>~</td></tr>
+          <tr><td>DevOps / CI-CD</td>    <td>✓✓</td><td>✓✓</td><td>~</td><td>~</td><td>✓✓</td><td>✓</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11.5px; color:var(--soft); margin-top:10px;">
+        ✓✓ Strong &nbsp;|&nbsp; ✓ Present &nbsp;|&nbsp; ~ Partial / Inferred &nbsp;|&nbsp; — Not mentioned
+      </p>
+    </section>
+
+    <!-- Interview Schedule -->
+    <section>
+      <div class="section-title">Interview Schedule (as provided)</div>
+      <table class="sched-table">
+        <thead>
+          <tr><th>Date</th><th>Time</th><th>Candidate</th><th>Rank</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mar 27, 2026</td><td>10:00 AM</td>
+            <td><strong>Venu Gajendrula</strong></td>
+            <td>#1 — 80%</td>
+            <td class="status-missed">⚠️ Missed — Reschedule Required</td>
+          </tr>
+          <tr>
+            <td>Mar 30, 2026</td><td>8:30 AM</td>
+            <td><strong>Anish Kumar Mishra</strong></td>
+            <td>#4 — 62%</td>
+            <td class="status-pending">Pending</td>
+          </tr>
+          <tr>
+            <td>Mar 30, 2026</td><td>9:00 AM</td>
+            <td><strong>Prasad Mamidi</strong></td>
+            <td>#3 — 68%</td>
+            <td class="status-pending">Pending</td>
+          </tr>
+          <tr>
+            <td>Mar 30, 2026</td><td>10:00 AM</td>
+            <td><strong>Nagesh Kumar</strong></td>
+            <td>#6 — 50%</td>
+            <td class="status-pending">Pending</td>
+          </tr>
+          <tr>
+            <td>Mar 30, 2026</td><td>11:00 AM</td>
+            <td><strong>Hazarath Dudekula</strong></td>
+            <td>#5 — 58%</td>
+            <td class="status-pending">Pending</td>
+          </tr>
+          <tr>
+            <td>Mar 31, 2026</td><td>8:30 AM</td>
+            <td><strong>Subash Babu Sivasubramanian</strong></td>
+            <td>#2 — 72%</td>
+            <td class="status-pending">Pending</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Hiring Decision -->
+    <section>
+      <div class="section-title">Hiring Decision Framework</div>
+      <div class="decision-grid">
+        <div class="decision-box priority">
+          <div class="decision-label">🔴 Reschedule Immediately</div>
+          <div class="decision-name">Venu Gajendrula (#1 · 80%)</div>
+          <div class="decision-note">Missed his slot. Best leadership profile in the cohort. Reschedule before the Mar 30–31 batch so you can compare with fresh context.</div>
+        </div>
+        <div class="decision-box priority">
+          <div class="decision-label">🟢 Priority Interview</div>
+          <div class="decision-name">Subash Babu Sivasubramanian (#2 · 72%)</div>
+          <div class="decision-note">Best technical alignment. Focus interview on: team management scope, Java/Spring Boot depth, city/relocation. Fast-track if leadership confirmed.</div>
+        </div>
+        <div class="decision-box consider">
+          <div class="decision-label">🟡 Strong Consider</div>
+          <div class="decision-name">Prasad Mamidi (#3 · 68%)</div>
+          <div class="decision-note">Hyderabad-based, strong React/Angular leadership. Go deeper on GraphQL exposure — if present, this candidate moves up. Probe Java alternatives.</div>
+        </div>
+        <div class="decision-box consider">
+          <div class="decision-label">🟡 Conditional</div>
+          <div class="decision-name">Anish Kumar Mishra (#4 · 62%)</div>
+          <div class="decision-note">Excellent React/GraphQL/TS profile. Confirm: Angular exposure, any Java background, and Bengaluru→Hyderabad relocation. Only if role is flexible on Angular/Java.</div>
+        </div>
+        <div class="decision-box hold">
+          <div class="decision-label">⬜ Hold — Stack Mismatch</div>
+          <div class="decision-name">Hazarath Dudekula (#5 · 58%)</div>
+          <div class="decision-note">Excellent candidate for a .NET/Azure/Angular role. Not a fit for a Java-primary JD. Keep in talent pool for future .NET architecture positions.</div>
+        </div>
+        <div class="decision-box hold">
+          <div class="decision-label">⬜ Hold — Tech Gaps</div>
+          <div class="decision-name">Nagesh Kumar (#6 · 50%)</div>
+          <div class="decision-note">Strong EM/delivery profile with Java/Agile. Does not meet the hands-on technical architect requirement. Better suited for a pure Engineering Manager role.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    Confidential &middot; Candidate Shortlist &middot; Senior Engineering Manager / Technical Architect &middot; March 29, 2026
+  </div>
+</div>
+</body>
+</html>

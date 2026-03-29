@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Resume Analysis – Subash Babu Sivasubramanian</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black:#000; --dark:#1a1a1a; --mid:#444; --soft:#666; --rule:#bbb; --rule-lt:#ddd; --bg:#fff; --radius:8px; }
+    body { font-family:'Inter',sans-serif; font-size:14.5px; line-height:1.7; color:var(--mid); background:#ebebeb; padding:40px 20px 60px; }
+    .page { max-width:860px; margin:0 auto; background:var(--bg); border:1.5px solid var(--rule); border-radius:12px; overflow:hidden; }
+    .header { background:#fff; padding:36px 48px 28px; border-bottom:3px solid var(--black); }
+    .header-label { font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--soft); margin-bottom:6px; }
+    .header h1 { font-family:'Merriweather',serif; font-size:26px; font-weight:700; color:var(--black); margin-bottom:14px; }
+    .header-meta { display:flex; flex-wrap:wrap; gap:18px; font-size:12.5px; color:var(--soft); }
+    .header-meta span { display:flex; align-items:center; gap:5px; }
+    .fit-banner { display:flex; align-items:center; gap:20px; padding:20px 48px; border-bottom:1px solid var(--rule); }
+    .fit-score { flex-shrink:0; width:70px; height:70px; border-radius:50%; border:2.5px solid var(--black); background:#fff; color:var(--black); display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:700; font-size:19px; line-height:1; }
+    .fit-score span { font-size:10px; font-weight:600; color:var(--soft); margin-top:2px; letter-spacing:.05em; text-transform:uppercase; }
+    .fit-text h2 { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:4px; }
+    .fit-text p { font-size:13px; color:var(--soft); }
+    .body { padding:36px 48px 48px; }
+    section { margin-bottom:34px; }
+    .section-title { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--dark); }
+    .cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .card { border-radius:var(--radius); padding:16px 18px; background:#fff; border:1px solid var(--rule); }
+    .card-title { font-weight:700; font-size:13px; color:var(--dark); margin-bottom:7px; }
+    .card ul { padding-left:15px; } .card ul li { font-size:12.5px; color:var(--mid); margin-bottom:4px; } .card p { font-size:12.5px; color:var(--mid); }
+    .strength-block { border:1px solid var(--rule); border-left:4px solid var(--dark); border-radius:var(--radius); padding:18px 22px; margin-bottom:10px; background:#fff; }
+    .strength-block .card-title { color:var(--dark); }
+    .strength-block ul { padding-left:16px; } .strength-block ul li { font-size:13px; color:var(--mid); margin-bottom:5px; }
+    .gap-block { border-radius:var(--radius); padding:16px 20px; margin-bottom:10px; background:#fff; }
+    .gap-block.major { border:1px solid var(--rule); border-left:5px solid var(--dark); }
+    .gap-block.minor { border:1px dashed var(--rule); border-left:3px dashed var(--mid); }
+    .gap-block .card-title { font-size:13px; margin-bottom:6px; color:var(--dark); }
+    .gap-block.major .card-title { font-weight:700; } .gap-block.minor .card-title { font-weight:600; }
+    .gap-block p { font-size:12.5px; color:var(--mid); }
+    .reco-box { border:2px solid var(--dark); border-radius:var(--radius); padding:20px 24px; background:#fff; }
+    .reco-box p { font-size:13.5px; color:var(--mid); margin-bottom:12px; }
+    .reco-box ol { padding-left:18px; } .reco-box ol li { font-size:13px; color:var(--mid); margin-bottom:6px; font-style:italic; }
+    .schedule-box { border:1px solid var(--rule); border-left:4px solid var(--dark); border-radius:var(--radius); padding:14px 20px; background:#fff; font-size:13px; color:var(--mid); }
+    .schedule-box strong { color:var(--dark); }
+    table { width:100%; border-collapse:collapse; font-size:13px; border:1.5px solid var(--dark); }
+    thead tr { background:#fff; border-bottom:2px solid var(--dark); }
+    thead th { padding:10px 14px; text-align:left; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--dark); }
+    tbody tr { border-bottom:1px solid var(--rule-lt); } tbody tr:nth-child(even) { background:#f8f8f8; }
+    tbody td { padding:9px 14px; vertical-align:middle; color:var(--mid); } tbody td:first-child { font-weight:600; color:var(--dark); }
+    .badge { display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:700; background:#fff; color:var(--dark); letter-spacing:.02em; }
+    .badge.excellent { border:2px solid var(--dark); }
+    .badge.strong { border:1.5px solid var(--dark); }
+    .badge.good { border:1.5px solid var(--mid); color:var(--mid); }
+    .badge.moderate { border:1.5px dashed var(--mid); color:var(--mid); }
+    .badge.weak { border:1.5px dashed var(--soft); color:var(--soft); }
+    .badge.gap { border:2px dashed var(--dark); font-style:italic; }
+    .obs-good, .obs-better { border-radius:var(--radius); padding:14px 18px; margin-bottom:10px; background:#fff; }
+    .obs-good { border:1px solid var(--rule); border-left:4px solid var(--dark); }
+    .obs-better { border:1px dashed var(--rule); border-left:3px dashed var(--mid); }
+    .obs-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:7px; color:var(--dark); }
+    .obs-good ul, .obs-better ul { padding-left:15px; } .obs-good ul li, .obs-better ul li { font-size:12.5px; color:var(--mid); margin-bottom:4px; }
+    .footer { text-align:center; font-size:11px; color:var(--soft); padding:16px 48px; border-top:1px solid var(--rule); letter-spacing:.04em; }
+    @media print { body { background:#fff; padding:0; } .page { box-shadow:none; border-radius:0; border:none; } section { page-break-inside:avoid; } }
+  </style>
+
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-label">Resume Analysis Report</div>
+    <h1>Subash Babu Sivasubramanian</h1>
+    <div class="header-meta">
+      <span>🎯 Enterprise Architect</span>
+      <span>📅 March 29, 2026</span>
+      <span>💼 16+ Years</span>
+      <span>📍 India (city not specified)</span>
+    </div>
+  </div>
+
+  <div class="fit-banner">
+    <div class="fit-score">72%<span>Fit</span></div>
+    <div class="fit-text">
+      <h2>Strong Technical Match — Leadership Depth Needs Verification</h2>
+      <p>Best technical alignment in the pool: React, TypeScript, GraphQL, Angular, Node.js, and multi-cloud (Azure/AWS/GCP) all present. The main uncertainty is leadership depth — the resume is light on team management detail.</p>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <section>
+      <div class="section-title"><span>📅</span> Interview Schedule</div>
+      <div class="schedule-box">
+        <strong>Slot:</strong> Mar 31, 2026 at 8:30 AM &nbsp;|&nbsp;
+        <strong>Status:</strong> Pending
+        
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>✅</span> Key Strengths</div>
+      <div class="strength-block"><div class="card-title">React, TypeScript & GraphQL — Excellent</div><ul><li>React 18, Next.js, Gatsby, Astro, TypeScript 5 — cutting-edge frontend stack across multiple enterprise clients.</li><li>GraphQL listed prominently and used in production projects (Accession Platform, Dell Billing, SCB Liquidity).</li><li>Micro-frontend architecture experience — advanced and directly relevant.</li></ul></div>
+<div class="strength-block"><div class="card-title">Angular & Full Frontend Breadth</div><ul><li>Angular listed in core skills with production usage.</li><li>Also covers Vue, Svelte, TailwindCSS, Material UI — broadest frontend coverage in this candidate pool.</li><li>Accessibility-first design (WCAG compliance) — a differentiator for enterprise clients.</li></ul></div>
+<div class="strength-block"><div class="card-title">Cloud & DevOps</div><ul><li>Azure, AWS, and GCP all present — ticks all three cloud platforms the JD references.</li><li>Kubernetes, Docker, Terraform, Ansible, CI/CD pipelines — mature DevOps profile.</li><li>AI/ML API integrations (OpenAI, Hugging Face) — valuable bonus.</li></ul></div>
+<div class="strength-block"><div class="card-title">Enterprise Client Track Record</div><ul><li>Lloyds Banking Group (London, onsite), KPMG, Dell, SCB, RHB, Pearson — blue-chip enterprise delivery.</li><li>Wipro, Virtusa, HCL, Cognizant, Publicis Sapient — strong pedigree of firms.</li></ul></div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>⚠️</span> Gaps &amp; Weaknesses</div>
+      <div class="gap-block major"><div class="card-title">Leadership Depth — Not Evidenced</div><p>The resume lists architect roles but provides no team sizes, direct reports, or management responsibilities. The JD requires managing multiple teams. This must be verified at interview.</p></div>
+<div class="gap-block minor"><div class="card-title">Java / Spring Boot — Peripheral</div><p>Spring Boot is listed in the backend skills section but no Java projects are described. The JD requires Java expertise; this needs depth verification.</p></div>
+<div class="gap-block minor"><div class="card-title">Location Not Stated</div><p>No city is mentioned in the resume. The role is Hyderabad with 4-day in-office requirement — relocation/commute feasibility needs confirmation.</p></div>
+<div class="gap-block minor"><div class="card-title">Resume Brevity</div><p>At under 4,000 characters, the resume is the shortest in this pool. Given 16+ years of experience, more project and leadership detail would strengthen the case significantly.</p></div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>📋</span> Resume Quality Observations</div>
+      <div class="obs-good"><div class="obs-label">The Good</div><ul><li>Best technical breadth in the candidate pool — React, GraphQL, Angular, TypeScript, multi-cloud all covered.</li><li>Impressive client list (Lloyds, KPMG, Dell, SCB) with recognisable delivery contexts.</li><li>Testing stack (Jest, Cypress, Playwright, Lighthouse) shows engineering discipline.</li></ul></div>
+      <div class="obs-better"><div class="obs-label">Could Be Better</div><ul><li>Resume is too short — needs more depth on leadership responsibilities, team sizes, and management impact.</li><li>No location mentioned — add city to avoid being filtered out for in-office roles.</li><li>Java/Spring Boot section needs a concrete project reference to be credible.</li></ul></div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>🏁</span> Recommendation</div>
+      <div class="reco-box">
+        <p>Subash has the strongest technical fit in this candidate pool. The key unknown is whether the Architect title comes with genuine team management experience. Prioritise for interview — focus specifically on leadership scope and Java depth.</p>
+        <ol><li>How large are the teams you have directly managed — do you carry direct reports or lead through influence?</li>
+<li>Can you walk through a project where you used Java/Spring Boot end-to-end?</li>
+<li>Are you based in Hyderabad or open to relocating for a 4-day in-office role?</li></ol>
+        <p style="margin-top:14px;margin-bottom:0;font-style:normal;">If leadership depth is confirmed, Subash is the top technical candidate in this cohort and should be prioritised accordingly.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><span>📊</span> Skills Coverage Matrix</div>
+      <table>
+        <thead><tr><th>JD Requirement</th><th>Resume Coverage</th><th>Strength</th></tr></thead>
+        <tbody><tr><td>Java / Spring Boot</td><td>Listed — no dedicated project shown</td><td><span class="badge moderate">Moderate</span></td></tr>
+<tr><td>React / TypeScript</td><td>React 18, TypeScript 5 — Excellent</td><td><span class="badge excellent">Excellent</span></td></tr>
+<tr><td>Angular</td><td>Present in core skills + projects</td><td><span class="badge good">Good</span></td></tr>
+<tr><td>GraphQL</td><td>Strong — multiple live projects</td><td><span class="badge strong">Strong</span></td></tr>
+<tr><td>Node.js</td><td>Strong — used across projects</td><td><span class="badge strong">Strong</span></td></tr>
+<tr><td>AWS</td><td>AWS present</td><td><span class="badge good">Good</span></td></tr>
+<tr><td>Azure</td><td>Azure present</td><td><span class="badge good">Good</span></td></tr>
+<tr><td>GCP</td><td>GCP present</td><td><span class="badge good">Good</span></td></tr>
+<tr><td>Microservices / Architecture</td><td>Micro-frontends, cloud-native</td><td><span class="badge strong">Strong</span></td></tr>
+<tr><td>Agile / Leadership</td><td>Architect role — management TBC</td><td><span class="badge moderate">Moderate</span></td></tr>
+<tr><td>Team Management 15+ yrs</td><td>16+ yrs — depth not evidenced</td><td><span class="badge moderate">Moderate</span></td></tr>
+<tr><td>Security / Auth</td><td>WCAG, JWT, auth patterns</td><td><span class="badge good">Good</span></td></tr>
+<tr><td>DevOps / CI-CD</td><td>Kubernetes, Docker, Terraform, CI/CD</td><td><span class="badge strong">Strong</span></td></tr></tbody>
+      </table>
+    </section>
+
+  </div>
+  <div class="footer">Confidential &middot; Resume Analysis &middot; Subash Babu Sivasubramanian &middot; March 29, 2026</div>
+</div>
+</body>
+</html>
